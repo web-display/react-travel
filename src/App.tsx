@@ -1,14 +1,19 @@
 import React from 'react'
 import styles from './App.module.css'
-import { BrowserRouter, Route } from 'react-router-dom'
-import { HomePage } from './pages'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { DetailPage, HomePage, Register, SignInPage } from './pages'
 
 function App() {
 	return (
 		<div className={styles.App}>
 			<BrowserRouter>
-				<Route exact path="/" component={HomePage} />
-				<Route path="/signIn" render={() => <h1>登陆页面</h1>} />
+				<Switch>
+					<Route exact path="/" component={HomePage} />
+					<Route path="/signIn" component={SignInPage} />
+					<Route path="/register" component={Register} />
+					<Route path="/detail/:touristRouteId" component={DetailPage} />
+					<Route render={() => <h1>404 not found</h1>} />
+				</Switch>
 			</BrowserRouter>
 		</div>
 	)
